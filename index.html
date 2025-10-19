@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gen-Z Chinese Flashcards — Student Edition</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Fonts (system fallback is fine) -->
+</head>
+<body>
+  <header class="topbar">
+    <h1>Gen-Z Chinese Flashcards</h1>
+    <div class="controls">
+      <button id="newCardBtn" class="btn">+ Add word</button>
+      <button id="exportBtn" class="btn outline">Export</button>
+      <button id="importBtn" class="btn outline">Import</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="deck-area">
+      <div id="cardContainer" class="card-grid">
+        <!-- cards injected here -->
+      </div>
+
+      <div class="card-controls">
+        <button id="prevBtn" class="btn">◀ Prev</button>
+        <button id="flipAllBtn" class="btn">Flip All</button>
+        <button id="nextBtn" class="btn">Next ▶</button>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <div class="panel-block">
+        <h3>Practice</h3>
+        <div id="practiceArea">
+          <p id="practicePrompt" class="muted">Select a card then press “Start Practice”.</p>
+          <button id="startPractice" class="btn">Start Practice</button>
+          <div id="practiceUI" class="hidden">
+            <label>Type Pinyin:</label>
+            <input id="pinyinInput" placeholder="ni3 hao3 or nǐ hǎo" />
+            <button id="checkPinyin" class="btn small">Check</button>
+
+            <label>Translate to Vietnamese:</label>
+            <input id="vnInput" placeholder="meaning in Vietnamese" />
+            <button id="checkVn" class="btn small">Check</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <h3>AI Dialogue</h3>
+        <p class="muted">Auto-generate a short dialogue using the selected word. (Client-side generator — no server needed.)</p>
+        <button id="genDialogue" class="btn">Generate Dialogue</button>
+        <div id="dialogueArea" class="dialogue"></div>
+      </div>
+
+      <div class="panel-block">
+        <h3>Rewards</h3>
+        <p class="muted">Complete practice or translate correctly to unlock animated rewards!</p>
+        <div id="rewardShelf" class="reward-shelf"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal: Add card -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Add / Edit Word</h2>
+      <label>Hanzi (汉字)</label>
+      <input id="inputHanzi" />
+      <label>Pinyin (with tone marks or numbers)</label>
+      <input id="inputPinyin" />
+      <label>Vietnamese meaning</label>
+      <input id="inputVN" />
+      <label>Mnemonic (how to remember)</label>
+      <textarea id="inputMnemonic"></textarea>
+      <label>Reward GIF / Video URL (optional)</label>
+      <input id="inputReward" placeholder="https://..." />
+      <div class="modal-actions">
+        <button id="saveCard" class="btn">Save</button>
+        <button id="cancelModal" class="btn outline">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reward overlay -->
+  <div id="rewardOverlay" class="reward-overlay hidden">
+    <div class="reward-box">
+      <div id="rewardEmoji" class="reward-emoji">🎉</div>
+      <div id="rewardMedia" class="reward-media"></div>
+      <button id="closeReward" class="btn">Close</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <small>Built for Chinese language students • Works offline (localStorage). Uses Web Speech API for zh-CN TTS.</small>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Quick deploy notes:
+    1. Create a new GitHub repo, add these 3 files (index.html, style.css, script.js).
+    2. Commit and push to main branch.
+    3. In repo Settings > Pages enable GitHub Pages from main branch (root).
+    4. The site will be available at https://USERNAME.github.io/REPONAME
+  -->
+</body>
+</html>
