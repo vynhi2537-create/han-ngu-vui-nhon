@@ -3,76 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcard Tiếng Trung Gen Z - Học và Chơi!</title>
-
-    <!-- 🌀 Tailwind CSS -->
+    <title>Flashcard Tiếng Trung Gen Z 🚀</title>
+    <!-- Tải TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 🎨 File CSS riêng -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- ⚙️ Cấu hình màu Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'neon-pink': '#ff69b4',
-                        'neon-teal': '#00f7ff',
-                        'genz-yellow': '#ffde59',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <!-- 🌟 Icon library -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+<body class="bg-gradient-to-br from-pink-100 via-blue-100 to-green-100 min-h-screen flex flex-col items-center justify-center font-sans p-4">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 text-center space-y-6 transition-all transform hover:scale-[1.01] duration-200">
+        <h1 class="text-2xl font-bold text-pink-600">Flashcard Tiếng Trung Gen Z 🚀</h1>
+        <div id="flashcard" class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl shadow-md p-6 cursor-pointer text-xl font-semibold text-gray-800 min-h-[120px] flex items-center justify-center transition-transform duration-300 hover:rotate-1"></div>
+        <div class="flex justify-between">
+            <button id="prev" class="btn">⬅️ Trước</button>
+            <button id="next" class="btn">Tiếp ➡️</button>
+        </div>
+        <button id="speak" class="btn bg-green-500 hover:bg-green-600">🔊 Phát âm</button>
 
-<body class="p-4 sm:p-8 min-h-screen">
-    <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold text-neon-pink">Flashcard Tiếng Trung Gen Z 🚀</h1>
-        <p class="text-gray-700 mt-2">Học – Luyện – Chơi cùng AI!</p>
-    </header>
-
-    <!-- 📚 Khu vực Flashcard -->
-    <main class="flex flex-col items-center justify-center">
-        <div class="flip-card-container relative w-72 h-48 mb-6" onclick="flipCard()">
-            <div id="flashcard" class="flip-card bg-white rounded-2xl shadow-2xl text-center flex items-center justify-center cursor-pointer">
-                <div class="front absolute w-full h-full flex flex-col items-center justify-center text-3xl font-bold">
-                    <span id="hanzi">我</span>
-                    <small id="pinyin" class="text-gray-600 text-xl">Wǒ</small>
-                </div>
-                <div class="back absolute w-full h-full flex flex-col items-center justify-center text-xl font-semibold text-gray-800">
-                    <span id="meaning">Tôi</span>
-                    <small id="note" class="text-gray-500 mt-2">Cách nhớ: chỉ bản thân mình</small>
-                </div>
+        <div class="mt-6">
+            <button id="startTest" class="btn bg-blue-500 hover:bg-blue-600 w-full">🧠 Kiểm tra từ vựng</button>
+            <div id="testArea" class="hidden mt-4 space-y-3">
+                <input type="text" id="answer" placeholder="Nhập nghĩa tiếng Việt..." class="w-full p-2 border rounded-md text-center focus:ring-2 focus:ring-blue-400">
+                <button id="checkAnswer" class="btn bg-purple-500 hover:bg-purple-600 w-full">Kiểm tra ✅</button>
+                <p id="result" class="font-semibold"></p>
             </div>
         </div>
 
-        <!-- 🎧 Nút chức năng -->
-        <div class="flex gap-4 mb-6">
-            <button class="gen-z-btn" onclick="showPrevCard()">⬅️ Trước</button>
-            <button class="gen-z-btn" onclick="speakCurrentWord()">🔊 Nghe</button>
-            <button class="gen-z-btn" onclick="showNextCard()">➡️ Tiếp</button>
+        <button id="addWordBtn" class="btn bg-orange-400 hover:bg-orange-500 w-full">➕ Thêm từ vựng</button>
+        <div id="addWordForm" class="hidden mt-4 space-y-3">
+            <input type="text" id="newWord" placeholder="Từ tiếng Trung" class="input">
+            <input type="text" id="newPinyin" placeholder="Pinyin" class="input">
+            <input type="text" id="newMeaning" placeholder="Nghĩa tiếng Việt" class="input">
+            <button id="saveWord" class="btn bg-green-500 hover:bg-green-600 w-full">💾 Lưu từ mới</button>
         </div>
 
-        <!-- ➕ Thêm từ mới -->
-        <section class="w-full max-w-md bg-white p-4 rounded-2xl shadow-lg">
-            <h2 class="text-xl font-bold text-neon-pink mb-2">Thêm từ mới ✍️</h2>
-            <input id="newHanzi" class="input-field" placeholder="Hán tự">
-            <input id="newPinyin" class="input-field" placeholder="Pinyin">
-            <input id="newMeaning" class="input-field" placeholder="Nghĩa tiếng Việt">
-            <input id="newNote" class="input-field" placeholder="Cách nhớ (tùy chọn)">
-            <button class="gen-z-btn w-full mt-2" onclick="addNewWord()">Thêm vào bộ thẻ 💖</button>
-        </section>
-    </main>
+        <button id="startAIConversation" class="btn bg-red-500 hover:bg-red-600 w-full">💬 Luyện hội thoại với AI</button>
+    </div>
 
-    <!-- 🎬 Hiệu ứng thưởng -->
-    <div id="reward" class="hidden fixed inset-0 flex items-center justify-center text-6xl animate-bounce">🎉</div>
-
-    <!-- 📜 File JS -->
-    <script src="script.js" type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>
