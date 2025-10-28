@@ -1,26 +1,44 @@
-const flashcards = [
-    { word: "你好", pinyin: "nǐ hǎo", meaning: "xin chào" },
-    { word: "谢谢", pinyin: "xièxie", meaning: "cảm ơn" },
-    { word: "再见", pinyin: "zàijiàn", meaning: "tạm biệt" },
-    { word: "学生", pinyin: "xuéshēng", meaning: "học sinh" },
-    { word: "老师", pinyin: "lǎoshī", meaning: "giáo viên" }
-];
+/* Hiệu ứng xoay thẻ */
+.flashcard {
+  transform-style: preserve-3d;
+}
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
 
-let currentIndex = 0;
-let showingMeaning = false;
-const flashcard = document.getElementById("flashcard");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-const speakBtn = document.getElementById("speak");
-const startTestBtn = document.getElementById("startTest");
-const testArea = document.getElementById("testArea");
-const checkAnswerBtn = document.getElementById("checkAnswer");
-const result = document.getElementById("result");
-const answerInput = document.getElementById("answer");
-const addWordBtn = document.getElementById("addWordBtn");
-const addWordForm = document.getElementById("addWordForm");
-const saveWordBtn = document.getElementById("saveWord");
-const startAIConversationBtn = document.getElementById("startAIConversation");
-const wordInput = document.getElementById("newWord");
-const pinyinInput = document.getElementById("newPinyin");
-const meaningInput = document.getElementById("newMeaning");
+/* Nút bấm chung */
+.btn {
+  background-color: #f472b6;
+  color: white;
+  padding: 8px 16px;
+  margin: 4px;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn:hover {
+  background-color: #ec4899;
+  transform: scale(1.05);
+}
+
+/* Input */
+.input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 6px auto;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  text-align: center;
+}
+.input:focus {
+  border-color: #f472b6;
+  box-shadow: 0 0 0 2px #fbcfe8;
+}
+
+/* Flashcard 3D */
+.perspective {
+  perspective: 1000px;
+}
